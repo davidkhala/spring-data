@@ -1,0 +1,34 @@
+plugins {
+    id 'java'
+    id 'maven-publish'
+    id 'java-library'
+}
+
+group = 'org.davidkhala'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    maven {
+        url = uri("https://maven.pkg.github.com/davidkhala/spring-common")
+        credentials {
+            username = 'davidkhala'
+            password = 'github_pat_'+'11ABXERRI0qByy6uWkalK3_PZKjWa1ou2KXrcvfnldSsx54x4Hjxe26pc2szxOXyJtJYEPBUE4H0HXDQoF'
+        }
+    }
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter:latest.release'
+    testImplementation 'org.davidkhala:spring-test:0.0.2'
+
+    testImplementation 'org.testcontainers:oracle-free:latest.release'
+
+    // Used for @ServiceConnection
+    testImplementation 'org.testcontainers:r2dbc:latest.release'
+    implementation 'com.oracle.database.r2dbc:oracle-r2dbc:latest.release'
+}
+
+test {
+    useJUnitPlatform()
+}
